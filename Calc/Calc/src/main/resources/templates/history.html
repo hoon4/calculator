@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link th:href="@{/css/bootstrap.min.css}"
+        href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>계산식</th>
+        <th>계산결과</th>
+        <th>사용자명</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="result : ${result}">
+        <td th:text="${result.id}"></td>
+        <td th:text="${result.calcString}"></td>
+        <td th:text="${result.calcResult}"></td>
+        <td th:text="${result.member.getName()}"></td>
+<!--        <td>-->
+<!--          <a href="#" th:href="@{/items/{id}/edit (id=${item.id})}"-->
+<!--             class="btn btn-primary" role="button">수정</a>-->
+<!--        </td>-->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
