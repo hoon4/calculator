@@ -7,9 +7,8 @@ import com.example.Calc.domain.CalcStatus;
 import com.example.Calc.domain.Calculator;
 import com.example.Calc.domain.Member;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,7 +24,7 @@ public class CalcController {
     private final MemberService memberService;
 
     @PostMapping("postcalc")
-    /* inputMap 파라미터를 받아, 미리 저장된 ageMap에서 해당 이름에 맵핑된 나이를 리턴해주는 메소드 */
+    /* 계산식, 결과 값을 받아 DB에 저장 */
     public Map<String,Object> postCalculate(@RequestBody Map<String,Object> inputMap
                                         , HttpServletRequest request) {
 
@@ -41,7 +40,7 @@ public class CalcController {
         calculator.setCalcResult(inputMap.get("calcResult").toString());
         calculator.setStatus(CalcStatus.USE);
 
-        // 로그인된 회원정보 불러오기
+        // 세션에 저장된 로그인정보 불러오기
         HttpSession session = request.getSession();
         String findId = (String)session.getAttribute("loginId");
 
@@ -53,6 +52,9 @@ public class CalcController {
 
         return returnMap;
     }
+
+
+
 
 
 }

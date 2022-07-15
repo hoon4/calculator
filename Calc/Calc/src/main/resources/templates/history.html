@@ -24,10 +24,10 @@
         <td th:text="${result.calcString}"></td>
         <td th:text="${result.calcResult}"></td>
         <td th:text="${result.member.getName()}"></td>
-<!--        <td>-->
-<!--          <a href="#" th:href="@{/items/{id}/edit (id=${item.id})}"-->
-<!--             class="btn btn-primary" role="button">수정</a>-->
-<!--        </td>-->
+        <td>
+          <a href="#" th:href="@{/{id}/delete (id=${result.id})}"
+             class="btn btn-primary" role="button">삭제</a>
+        </td>
       </tr>
       </tbody>
     </table>

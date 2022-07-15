@@ -27,10 +27,20 @@ public class CalcRepository {
                 .getResultList();
     }
 
+    public List<Calculator> findAllByStatus() {
+        return em.createQuery("select c from Calculator c where c.status = :status", Calculator.class)
+                .setParameter("status", CalcStatus.USE)
+                .getResultList();
+    }
+
     public List<Calculator> find(Long id) {
         return em.createQuery("select c from Calculator c where c.id = :id", Calculator.class)
                 .setParameter("id", id)
                 .getResultList();
+    }
+
+    public Calculator findOne(Long id) {
+        return em.find(Calculator.class, id);
     }
 
 

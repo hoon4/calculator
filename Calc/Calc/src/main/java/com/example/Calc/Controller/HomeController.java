@@ -70,8 +70,6 @@ public class HomeController {
         joinMember.setName(memberForm.getName());
         joinMember.setPassword(memberForm.getPassword());
 
-
-
         memberService.join(joinMember);
 
         return "home";
@@ -82,6 +80,15 @@ public class HomeController {
         List<Calculator> calculatorList = calcService.showResult();
         model.addAttribute("result", calculatorList);
         return "history";
+    }
+
+    @GetMapping("/{calcId}/delete")
+    public String getDelete(@PathVariable("calcId") Long calcId, Model model) {
+        calcService.deleteCalc(calcId);
+        List<Calculator> calculatorList = calcService.showResult();
+        model.addAttribute("result", calculatorList);
+
+        return "redirect:/history";
     }
 
 }
